@@ -5,40 +5,41 @@ interface User {
 
 
 class SubscriptionBloc {
-    
-    onAddSubscription( subscriptionId: number ) {
+
+    onAddSubscription(subscriptionId: number) {
         // Simula la gestión de suscripciones
-        console.log('Agregando suscripción:', subscriptionId );
-    }       
+        console.log('Agregando suscripción:', subscriptionId);
+    }
 }
 
+class UserService {
 
-// Esta clase viola el Principio de Responsabilidad Única (SRP)
-class UserBloc {
-
-    loadUser( id: number ) {
+    loadUser(id: number) {
         // Simula la carga de un usuario
         console.log('Cargando usuario con id:', id);
     }
-
-    saveUser( user: User ) {
+    saveUser(user: User) {
         // Simula el guardado en base de datos
-        console.log('Guardando en base de datos:', user );
+        console.log('Guardando en base de datos:', user);
     }
+}
 
-    notifyUser() {
-        // Simula el envío de notificaciones
-        console.log('Enviando correo a los usuarios');
+class Mailer {
+    sendEmail(user: User, message: string) {
+        // Simula el envío de un correo electrónico
+        console.log(`Enviando correo a ${user.name} con el mensaje: ${message}`);
     }
-
- 
+}
+class UserBloc {
 }
 
 
 const userBloc = new UserBloc();
 const subscriptionBloc = new SubscriptionBloc();
+const userService = new UserService();
+const mailer = new Mailer();
 
-userBloc.loadUser(10);
-userBloc.saveUser({ id: 10, name: 'Fernando' });
-userBloc.notifyUser();
+userService.loadUser(10);
+userService.saveUser({ id: 10, name: 'Fernando' });
+mailer.sendEmail({ id: 10, name: 'Fernando' }, 'Bienvenido a nuestro servicio!');
 subscriptionBloc.onAddSubscription(1234);
